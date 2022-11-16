@@ -7,16 +7,24 @@
                     {{selectedRobot.head.title}}
                     <span v-if="selectedRobot.head.onSale" class="sale">Sale !</span>
                 </div> -->
-                <PartSelector :parts="availableParts.heads" position="top"/>
+                <PartSelector :parts="availableParts.heads"
+                 position="top"
+                 @partSelected="part => selectedRobot.head=part"/>
 
         </div>
         <div class="middle-row">
-            <PartSelector :parts="availableParts.arms" position="left"/>
-            <PartSelector :parts="availableParts.torsos" position="center"/>
-            <PartSelector :parts="availableParts.arms" position="right"/>
+            <PartSelector :parts="availableParts.arms" position="left"
+            @partSelected="part => selectedRobot.leftArm=part"/>
+
+            <PartSelector :parts="availableParts.torsos" position="center"
+            @partSelected="part => selectedRobot.torso=part"/>
+
+            <PartSelector :parts="availableParts.arms" position="right"
+            @partSelected="part => selectedRobot.rightArm=part"/>
         </div>
         <div class="bottom-row">
-            <PartSelector :parts="availableParts.bases" position="bottom"/>
+            <PartSelector :parts="availableParts.bases" position="bottom"
+            @partSelected="part => selectedRobot.base=part"/>
         </div>
         <div>
             <h1>Cart</h1>
@@ -70,6 +78,7 @@ export default {
   methods: {
     addToCart() {
       const robot = this.selectedRobot;
+      console.log('addToCart', robot);
       const cost = robot.head.cost
       + robot.leftArm.cost
       + robot.torso.cost
