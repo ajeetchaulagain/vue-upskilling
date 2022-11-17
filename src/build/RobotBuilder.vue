@@ -272,4 +272,5 @@ td,th{
 .rotate-left {
   transform: rotate(-90deg);
 }
+
 </style>
